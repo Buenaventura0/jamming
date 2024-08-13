@@ -6,7 +6,11 @@ function SearchResults (props) {
   return (
     <div className={styles.SearchResults}>
       {/* <!-- Add a Tracklist component --> */}
-      <Tracklist userSearchResults={props.userSearchResults} />
+      <Tracklist 
+        userSearchResults={props.userSearchResults}
+        isRemoval={false} 
+        onAdd={props.onAdd}
+      />
     </div>
   );
 }
