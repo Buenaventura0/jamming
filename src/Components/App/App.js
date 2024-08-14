@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import styles from "./App.module.css";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
+import SearchBar from "../SearchBar/SearchBar";
+import { Spotify } from "../../util/Spotify";
 
-function App () {
+function App() {
   const [searchResults, setSearchResults] = useState([
     {
       name: "Example Track Name 1",
@@ -78,6 +80,15 @@ function App () {
 
   function savePlaylist() {
     const trackURIs = playlistTracks.map((t) => t.uri);
+    Spotify.savePlaylist(playlistName, trackURIs).then(() => {
+      setPlaylistName("New Playlist");
+      setPlaylistTracks([]);
+    });
+  };
+
+  function search(term) {
+    Spotify.search(term).then((result) => setSearchResults(result));
+    console.log(term);
   };
 
   return (
@@ -87,6 +98,7 @@ function App () {
       </h1>
       <div className={styles.App}>
         {/* <!-- Add a SearchBar component --> */}
+          <SearchBar onSearch={search} />
         
         <div className={styles["App-playlist"]}>
           {/* <!-- Add a SearchResults component --> */}
@@ -100,6 +112,7 @@ function App () {
             playlistTracks={playlistTracks} 
             onRemove={removeTrack}
             onNameChange={updatePlaylistName}
+            onSave={savePlaylist}
           />
         </div>
       </div>
