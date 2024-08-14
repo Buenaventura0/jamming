@@ -25,6 +25,6 @@ function SearchBar(props) {
       </button>
     </div>
   );
-}
+};
 
 export default SearchBar;

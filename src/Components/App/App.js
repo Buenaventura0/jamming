@@ -97,16 +97,13 @@ function App() {
         Ja<span className={styles.highlight}>mmm</span>ing
       </h1>
       <div className={styles.App}>
-        {/* <!-- Add a SearchBar component --> */}
-          <SearchBar onSearch={search} />
+        <SearchBar onSearch={search} />
         
         <div className={styles["App-playlist"]}>
-          {/* <!-- Add a SearchResults component --> */}
           <SearchResults 
             userSearchResults={searchResults}
             onAdd={addTrack}
           />
-          {/* <!-- Add a Playlist component --> */}
           <Playlist 
             playlistName={playlistName} 
             playlistTracks={playlistTracks} 
@@ -118,6 +115,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
